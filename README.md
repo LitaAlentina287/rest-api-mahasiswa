@@ -96,6 +96,16 @@ Response:
     "id": 1,
     "nama": "Andi",
     "jurusan": "Informatika"
+  },
+  {
+    "id": 2,
+    "nama": "Budi",
+    "jurusan": "Sistem Informasi"
+  },
+  {
+    "id": 3,
+    "nama": "Citra",
+    "jurusan": "Teknik Komputer"
   }
 ]
 ```
@@ -113,6 +123,16 @@ Contoh:
 
 ```
 /students/1
+```
+
+Response:
+
+```
+{
+    "id": 1,
+    "nama": "Andi",
+    "jurusan": "Informatika"
+}
 ```
 
 📸 Screenshot:
