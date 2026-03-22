@@ -135,6 +135,12 @@ Response:
 }
 ```
 
+Tampilan Response jika data tidak ada:
+
+```
+Mahasiswa tidak ditemukan
+```
+
 📸 Screenshot:
 *(Tambahkan screenshot hasil di Postman)*
 
