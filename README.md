@@ -44,6 +44,9 @@ http://localhost:3000
 
 ### 1. Home
 
+Endpoint ini digunakan untuk memastikan bahwa server berjalan dengan baik.
+Jika endpoint ini diakses, server akan memberikan response sederhana berupa pesan teks.
+
 **GET /**
 Response:
 
