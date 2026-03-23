@@ -251,6 +251,7 @@ API ini dibuat untuk mengelola data mahasiswa dengan fitur:
 
 ```
 rest-api
+├── images
 ├── app.js
 ├── package.json
 ├── package-lock.json
@@ -266,6 +267,7 @@ Project ini berhasil membuat REST API sederhana menggunakan Express.js dengan fi
 
 ---
 
-## Author
 
 Lita Alentina
+23552011097
+TIF K 23B
