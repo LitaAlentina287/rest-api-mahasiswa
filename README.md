@@ -4,38 +4,6 @@ Project ini merupakan implementasi REST API sederhana menggunakan Node.js dan Ex
 
 ---
 
-## 📌 Deskripsi
-
-API ini dibuat untuk mengelola data mahasiswa dengan fitur:
-
-* Menampilkan semua data mahasiswa
-* Menampilkan data berdasarkan ID
-* Menambahkan data mahasiswa
-* Mengupdate data mahasiswa
-* Menghapus data mahasiswa
-
----
-
-## 🛠️ Teknologi
-
-* Node.js
-* Express.js
-
----
-
-## 📁 Struktur Project
-
-```
-rest-api
-├── app.js
-├── package.json
-├── package-lock.json
-├── README.md
-└── .gitignore
-```
-
----
-
 ## ▶️ Cara Menjalankan Project
 
 1. Buka terminal / CMD
@@ -260,12 +228,44 @@ Menghapus data dari array berdasarkan ID.
 
 ---
 
-## ✅ Kesimpulan
+## 📌 Deskripsi
+
+API ini dibuat untuk mengelola data mahasiswa dengan fitur:
+
+* Menampilkan semua data mahasiswa
+* Menampilkan data berdasarkan ID
+* Menambahkan data mahasiswa
+* Mengupdate data mahasiswa
+* Menghapus data mahasiswa
+
+---
+
+## 🛠️ Teknologi
+
+* Node.js
+* Express.js
+
+---
+
+## 📁 Struktur Project
+
+```
+rest-api
+├── app.js
+├── package.json
+├── package-lock.json
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Kesimpulan
 
 Project ini berhasil membuat REST API sederhana menggunakan Express.js dengan fitur CRUD (Create, Read, Update, Delete) dan telah diuji menggunakan Postman.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 Lita Alentina
