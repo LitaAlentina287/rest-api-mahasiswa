@@ -111,8 +111,7 @@ Response:
 ]
 ```
 
-📸 Screenshot:
-*(Tambahkan screenshot dari Postman)*
+![GET](images/get.png)
 
 ---
 
@@ -136,14 +135,17 @@ Response:
 }
 ```
 
+![GET ID ADA](images/get-id-ada.png)
+
+
 Tampilan Response jika data tidak ada:
 
 ```
 Mahasiswa tidak ditemukan
 ```
 
-📸 Screenshot:
-*(Tambahkan screenshot hasil di Postman)*
+![GET ID TIDAK ADA](images/get-id-tidak.png)
+
 
 ---
 
@@ -160,8 +162,7 @@ Body JSON:
 }
 ```
 
-📸 Screenshot:
-*(Tambahkan screenshot request & response)*
+![POST](images/post.png)
 
 ---
 
@@ -178,8 +179,7 @@ Body JSON:
 }
 ```
 
-📸 Screenshot:
-*(Tambahkan screenshot hasil update)*
+![PUT](images/put.png)
 
 ---
 
@@ -193,8 +193,9 @@ Contoh:
 DELETE /students/2
 ```
 
-📸 Screenshot:
-*(Tambahkan screenshot hasil delete)*
+![DELETE](images/delete.png)
+
+![GET AFTER DELETE](images/get-after-delete.png)
 
 ---
 
