@@ -53,7 +53,7 @@ Response:
 ```
 API Mahasiswa berjalan
 ```
-![SERVER](images/home.png)
+![HOME](images/home.png)
 
 ---
 
@@ -415,6 +415,8 @@ Project ini berhasil membuat REST API sederhana menggunakan Express.js dengan fi
 ---
 
 
-Lita Alentina
-23552011097
-TIF K 23B
+## 👨‍💻 Author
+
+Nama: Lita Alentina  
+NIM: 23552011097  
+Kelas: TIF K 23B
