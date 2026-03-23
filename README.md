@@ -81,6 +81,7 @@ Response:
 ```
 API Mahasiswa berjalan
 ```
+![SERVER](images/home.png)
 
 ---
 
