@@ -67,7 +67,8 @@ http://localhost:3000
 
 ## 📸 Screenshot Menjalankan Server
 
-*(Tambahkan screenshot saat server berjalan di CMD)*
+![SERVER](images/server.png)
+
 
 ---
 
