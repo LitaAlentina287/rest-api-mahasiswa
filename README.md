@@ -170,35 +170,62 @@ DELETE /students/2
 
 ## 💻 Penjelasan Kode
 
-### 1. Import dan Setup
+### 1. Import dan Inisialisasi Express
 
 ```javascript
 const express = require("express");
 const app = express();
 const PORT = 3000;
+```
 
+Kode ini digunakan untuk mengimpor framework Express.js dan membuat instance aplikasi server.
+Port **3000** digunakan sebagai tempat server berjalan.
+
+---
+
+### 2. Middleware
+
+```javascript
 app.use(express.json());
 ```
 
-Digunakan untuk mengaktifkan Express dan membaca data JSON.
+Middleware ini berfungsi untuk membaca data **JSON** dari request body, terutama saat menggunakan metode **POST** dan **PUT**.
 
 ---
 
-### 2. Data Dummy
+### 3. Data Dummy
 
 ```javascript
 let students = [
-  { id: 1, nama: "Andi", jurusan: "Informatika" }
+  { id: 1, nama: "Andi", jurusan: "Informatika" },
+  { id: 2, nama: "Budi", jurusan: "Sistem Informasi" },
+  { id: 3, nama: "Citra", jurusan: "Teknik Komputer" },
 ];
 ```
 
-Data disimpan dalam array tanpa database.
+Data mahasiswa disimpan dalam bentuk array (tanpa database).
+Data ini akan digunakan untuk proses **CRUD (Create, Read, Update, Delete)**.
 
 ---
 
-### 3. Routing
+### 4. Endpoint Home
 
-Contoh GET:
+```javascript
+app.get("/", (req, res) => {
+  res.send("API Mahasiswa berjalan");
+});
+```
+
+Endpoint ini digunakan untuk mengecek apakah server berjalan dengan baik.
+Jika diakses, akan menampilkan pesan:
+
+```
+API Mahasiswa berjalan
+```
+
+---
+
+### 5. GET Semua Mahasiswa
 
 ```javascript
 app.get("/students", (req, res) => {
@@ -206,25 +233,125 @@ app.get("/students", (req, res) => {
 });
 ```
 
-Digunakan untuk mengambil semua data mahasiswa.
+Endpoint ini digunakan untuk menampilkan seluruh data mahasiswa dalam format JSON.
 
 ---
 
-### 4. POST
+### 6. GET Mahasiswa Berdasarkan ID
 
-Menambahkan data baru ke array.
+```javascript
+app.get("/students/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const student = students.find((s) => s.id === id);
+
+  if (!student) {
+    return res.status(404).send("Mahasiswa tidak ditemukan");
+  }
+
+  res.json(student);
+});
+```
+
+* Mengambil parameter `id` dari URL
+* Mencari data mahasiswa berdasarkan ID
+* Jika tidak ditemukan → menampilkan pesan error
+* Jika ditemukan → menampilkan data mahasiswa
 
 ---
 
-### 5. PUT
+### 7. POST (Tambah Data Mahasiswa)
 
-Mengupdate data berdasarkan ID.
+```javascript
+app.post("/students", (req, res) => {
+  const { nama, jurusan } = req.body;
+
+  const newStudent = {
+    id: students.length + 1,
+    nama,
+    jurusan,
+  };
+
+  students.push(newStudent);
+
+  res.json(newStudent);
+});
+```
+
+Digunakan untuk menambahkan data mahasiswa baru:
+
+* Data diambil dari body request (JSON)
+* ID dibuat otomatis
+* Data disimpan ke array `students`
 
 ---
 
-### 6. DELETE
+### 8. PUT (Update Data Mahasiswa)
 
-Menghapus data dari array berdasarkan ID.
+```javascript
+app.put("/students/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const { nama, jurusan } = req.body;
+
+  const index = students.findIndex((s) => s.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Mahasiswa tidak ditemukan");
+  }
+
+  students[index] = { id, nama, jurusan };
+
+  res.json(students[index]);
+});
+```
+
+Digunakan untuk mengubah data mahasiswa:
+
+* Mencari data berdasarkan ID
+* Jika tidak ditemukan → error
+* Jika ditemukan → data diperbarui
+
+---
+
+### 9. DELETE (Hapus Data Mahasiswa)
+
+```javascript
+app.delete("/students/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const index = students.findIndex((s) => s.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Mahasiswa tidak ditemukan");
+  }
+
+  const deleted = students.splice(index, 1);
+
+  res.json(deleted[0]);
+});
+```
+
+Digunakan untuk menghapus data mahasiswa:
+
+* Mencari data berdasarkan ID
+* Menghapus dari array
+* Mengembalikan data yang dihapus
+
+---
+
+### 10. Menjalankan Server
+
+```javascript
+app.listen(PORT, () => {
+  console.log(`Server berjalan di http://localhost:${PORT}`);
+});
+```
+
+Kode ini digunakan untuk menjalankan server pada port **3000**.
+Jika berhasil, akan muncul pesan di terminal:
+
+```
+Server berjalan di http://localhost:3000
+```
 
 ---
 
