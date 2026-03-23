@@ -61,6 +61,9 @@ API Mahasiswa berjalan
 
 **GET /students**
 
+Endpoint ini digunakan untuk menampilkan seluruh data mahasiswa yang tersimpan dalam array.
+Data akan ditampilkan dalam format JSON.
+
 Response:
 
 ```json
@@ -90,6 +93,9 @@ Response:
 ### 3. GET Mahasiswa Berdasarkan ID
 
 **GET /students/:id**
+
+Endpoint ini digunakan untuk mengambil data mahasiswa berdasarkan ID tertentu.
+ID dikirim melalui parameter URL.
 
 Contoh:
 
@@ -125,6 +131,9 @@ Mahasiswa tidak ditemukan
 
 **POST /students**
 
+Endpoint ini digunakan untuk menambahkan data mahasiswa baru ke dalam array.
+Data dikirim melalui body request dalam format JSON.
+
 Body JSON:
 
 ```json
@@ -141,6 +150,9 @@ Body JSON:
 ### 5. PUT Update Mahasiswa
 
 **PUT /students/:id**
+
+Endpoint ini digunakan untuk memperbarui data mahasiswa berdasarkan ID.
+Data baru dikirim melalui body request.
 
 Body JSON:
 
@@ -159,11 +171,16 @@ Body JSON:
 
 **DELETE /students/:id**
 
+Endpoint ini digunakan untuk menghapus data mahasiswa berdasarkan ID.
+
 Contoh:
 
 ```
 DELETE /students/2
 ```
+
+Jika berhasil, data akan dihapus dari array dan ditampilkan sebagai response.
+
 
 ![DELETE](images/delete.png)
 
