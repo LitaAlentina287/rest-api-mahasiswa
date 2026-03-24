@@ -188,6 +188,18 @@ Jika berhasil, data akan dihapus dari array dan ditampilkan sebagai response.
 
 ---
 
+## 📮 Postman Collection
+
+Project ini juga menyediakan file Postman Collection untuk memudahkan pengujian API.
+
+Langkah penggunaan:
+1. Buka Postman
+2. Klik Import
+3. Pilih file `postman_collection.json`
+4. Pastikan variable:
+   base_url = http://localhost:3000
+5. Jalankan server terlebih dahulu
+
 ## 💻 Penjelasan Kode
 
 ### 1. Import dan Inisialisasi Express
@@ -198,12 +210,12 @@ const app = express();
 const PORT = 3000;
 ```
 
-Kode ini digunakan untuk mengimpor framework Express.js dan membuat instance aplikasi server.
-Port **3000** digunakan sebagai tempat server berjalan.
+Pada bagian ini, kita mengimpor framework Express.js yang digunakan untuk membuat server.
+Kemudian dibuat instance aplikasi dengan express() dan menentukan port server yaitu 3000.
 
 ---
 
-### 2. Middleware
+### 2. Middleware JSON
 
 ```javascript
 app.use(express.json());
@@ -285,23 +297,32 @@ app.get("/students/:id", (req, res) => {
 app.post("/students", (req, res) => {
   const { nama, jurusan } = req.body;
 
+  if (!nama || !jurusan) {
+    return res.status(400).send("Nama dan jurusan wajib diisi");
+  }
+
+  const newId =
+    students.length > 0 ? students[students.length - 1].id + 1 : 1;
+
   const newStudent = {
-    id: students.length + 1,
+    id: newId,
     nama,
     jurusan,
   };
 
   students.push(newStudent);
 
-  res.json(newStudent);
+  res.status(201).json(newStudent);
 });
 ```
 
-Digunakan untuk menambahkan data mahasiswa baru:
+Penjelasan:
 
-* Data diambil dari body request (JSON)
-* ID dibuat otomatis
-* Data disimpan ke array `students`
+* Mengambil data nama dan jurusan dari request body
+* Melakukan validasi agar tidak kosong
+* Membuat ID baru secara otomatis
+* Menambahkan data ke array
+* Mengembalikan data yang berhasil ditambahkan dengan status 201 (Created)
 
 ---
 
@@ -318,17 +339,24 @@ app.put("/students/:id", (req, res) => {
     return res.status(404).send("Mahasiswa tidak ditemukan");
   }
 
+  if (!nama || !jurusan) {
+    return res.status(400).send("Nama dan jurusan wajib diisi");
+  }
+
   students[index] = { id, nama, jurusan };
 
   res.json(students[index]);
 });
 ```
 
-Digunakan untuk mengubah data mahasiswa:
+Penjelasan:
 
-* Mencari data berdasarkan ID
-* Jika tidak ditemukan → error
-* Jika ditemukan → data diperbarui
+* Mengambil ID dari parameter URL
+* Mencari index data mahasiswa
+* Jika tidak ditemukan → error 404
+* Melakukan validasi input
+* Memperbarui data mahasiswa
+* Mengembalikan data terbaru
 
 ---
 
@@ -350,11 +378,13 @@ app.delete("/students/:id", (req, res) => {
 });
 ```
 
-Digunakan untuk menghapus data mahasiswa:
+Penjelasan:
 
+* Mengambil ID dari URL
 * Mencari data berdasarkan ID
-* Menghapus dari array
-* Mengembalikan data yang dihapus
+* Jika tidak ditemukan → error
+* Menghapus data dari array
+* Mengembalikan data yang telah dihapus
 
 ---
 
