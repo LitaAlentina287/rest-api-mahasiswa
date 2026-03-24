@@ -9,7 +9,7 @@
   },
   "item": [
     {
-      "name": "All Students",
+      "name": "GET All Students",
       "event": [
         {
           "listen": "test",
@@ -53,7 +53,7 @@
       "response": []
     },
     {
-      "name": "Add Student",
+      "name": "POST Add Student",
       "event": [
         {
           "listen": "test",
@@ -98,7 +98,7 @@
       "response": []
     },
     {
-      "name": "Home",
+      "name": "GET Home",
       "request": {
         "method": "GET",
         "header": [],
@@ -117,7 +117,7 @@
       "response": []
     },
     {
-      "name": "Student by ID",
+      "name": "GET Student by ID",
       "request": {
         "method": "GET",
         "header": [],
@@ -137,7 +137,7 @@
       "response": []
     },
     {
-      "name": "Update Student",
+      "name": "PUT Update Student",
       "request": {
         "method": "PUT",
         "header": [],
@@ -166,7 +166,7 @@
       "response": []
     },
     {
-      "name": "Student",
+      "name": "DELETE Student",
       "request": {
         "method": "DELETE",
         "header": [],
