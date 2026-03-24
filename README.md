@@ -167,7 +167,7 @@ Body JSON:
 
 ---
 
-### 6. DELETE Mahasiswa
+### 6. DELETE Mahasiswa Berdasarkan ID
 
 **DELETE /students/:id**
 
@@ -402,7 +402,7 @@ rest-api
 ├── app.js
 ├── package.json
 ├── package-lock.json
-├── postman_collection
+├── postman_collection.json
 ├── README.md
 └── .gitignore
 ```
