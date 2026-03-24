@@ -2,11 +2,15 @@
   "info": {
     "_postman_id": "e5824e4f-fe90-4a5a-b56a-6ff8d3c31b85",
     "name": "Mahasiswa REST API",
-    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "53329026",
-    "_collection_link": "https://go.postman.co/collection/53329026-e5824e4f-fe90-4a5a-b56a-6ff8d3c31b85?source=collection_link"
+    "description": "Collection untuk menguji REST API Mahasiswa (CRUD) menggunakan Node.js dan Express.js.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ],
   "item": [
     {
       "name": "GET Home",
@@ -19,35 +23,14 @@
               "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000"
-        },
-        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
-      },
-      "response": []
+        "url": "{{base_url}}/"
+      }
     },
     {
       "name": "GET All Students",
@@ -56,140 +39,118 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Successful POST request\", function () {",
-              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-              "});",
-              ""
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"nama\": \"Dewi\",\n  \"jurusan\": \"Informatika\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/students",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students"
-          ]
-        },
-        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-      },
-      "response": []
+        "url": "{{base_url}}/students"
+      }
     },
     {
       "name": "GET Student by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code 200 atau 404\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/students/6",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "6"
-          ]
-        }
-      },
-      "response": []
+        "url": "{{base_url}}/students/1"
+      }
     },
     {
       "name": "POST Add Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "request": {
         "method": "POST",
-        "header": [],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"nama\": \"Dewi\",\r\n  \"jurusan\": \"Informatika\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"nama\": \"Dewi\",\n  \"jurusan\": \"Informatika\"\n}"
         },
-        "url": {
-          "raw": "http://localhost:3000/students",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students"
-          ]
-        }
-      },
-      "response": []
+        "url": "{{base_url}}/students"
+      }
     },
     {
       "name": "PUT Update Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "request": {
         "method": "PUT",
-        "header": [],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"nama\": \"Andi Update\",\r\n  \"jurusan\": \"Informatika\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"nama\": \"Andi Update\",\n  \"jurusan\": \"Informatika\"\n}"
         },
-        "url": {
-          "raw": "http://localhost:3000/students/1",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "1"
-          ]
-        }
-      },
-      "response": []
+        "url": "{{base_url}}/students/1"
+      }
     },
     {
       "name": "DELETE Student by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "request": {
         "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/students/2",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "2"
-          ]
-        }
-      },
-      "response": []
+        "url": "{{base_url}}/students/2"
+      }
     }
   ]
 }

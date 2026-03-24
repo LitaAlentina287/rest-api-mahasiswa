@@ -11,17 +11,17 @@ let students = [
   { id: 3, nama: "Citra", jurusan: "Teknik Komputer" },
 ];
 
-// Home
+// 1. Home
 app.get("/", (req, res) => {
   res.send("API Mahasiswa berjalan");
 });
 
-// GET semua
+// 2. GET semua
 app.get("/students", (req, res) => {
   res.json(students);
 });
 
-// GET by ID
+// 3. GET by ID
 app.get("/students/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const student = students.find((s) => s.id === id);
@@ -33,22 +33,29 @@ app.get("/students/:id", (req, res) => {
   res.json(student);
 });
 
-// POST
+// 4. POST
 app.post("/students", (req, res) => {
   const { nama, jurusan } = req.body;
 
+  if (!nama || !jurusan) {
+    return res.status(400).send("Nama dan jurusan wajib diisi");
+  }
+
+  const newId =
+    students.length > 0 ? students[students.length - 1].id + 1 : 1;
+
   const newStudent = {
-    id: students.length + 1,
+    id: newId,
     nama,
     jurusan,
   };
 
   students.push(newStudent);
 
-  res.json(newStudent);
+  res.status(201).json(newStudent);
 });
 
-// PUT
+// 5. PUT
 app.put("/students/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const { nama, jurusan } = req.body;
@@ -59,12 +66,16 @@ app.put("/students/:id", (req, res) => {
     return res.status(404).send("Mahasiswa tidak ditemukan");
   }
 
+  if (!nama || !jurusan) {
+    return res.status(400).send("Nama dan jurusan wajib diisi");
+  }
+
   students[index] = { id, nama, jurusan };
 
   res.json(students[index]);
 });
 
-// DELETE
+// 6. DELETE
 app.delete("/students/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -79,7 +90,7 @@ app.delete("/students/:id", (req, res) => {
   res.json(deleted[0]);
 });
 
-// JALANKAN SERVER
+// Jalankan server
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
 });
