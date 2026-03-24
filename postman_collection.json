@@ -9,7 +9,7 @@
   },
   "item": [
     {
-      "name": "GET All Students",
+      "name": "GET Home",
       "event": [
         {
           "listen": "test",
@@ -38,22 +38,19 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/students",
+          "raw": "http://localhost:3000",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "3000",
-          "path": [
-            "students"
-          ]
+          "port": "3000"
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
       },
       "response": []
     },
     {
-      "name": "POST Add Student",
+      "name": "GET All Students",
       "event": [
         {
           "listen": "test",
@@ -71,7 +68,7 @@
         }
       ],
       "request": {
-        "method": "POST",
+        "method": "GET",
         "header": [],
         "body": {
           "mode": "raw",
@@ -98,31 +95,12 @@
       "response": []
     },
     {
-      "name": "GET Home",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            ""
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "GET Student by ID",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/students/1",
+          "raw": "http://localhost:3000/students/6",
           "protocol": "http",
           "host": [
             "localhost"
@@ -130,7 +108,35 @@
           "port": "3000",
           "path": [
             "students",
-            "1"
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Add Student",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nama\": \"Dewi\",\r\n  \"jurusan\": \"Informatika\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "students"
           ]
         }
       },
@@ -166,7 +172,7 @@
       "response": []
     },
     {
-      "name": "DELETE Student",
+      "name": "DELETE Student by ID",
       "request": {
         "method": "DELETE",
         "header": [],
